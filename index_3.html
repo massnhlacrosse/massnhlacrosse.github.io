@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MA & NH Boys Lacrosse — 2026 Schedules</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy:#0d1f3c;--navy-mid:#1a3560;--navy-light:#254880;--gold:#c9a84c;--gold-light:#e8c97a;
+    --cream:#f8f5ef;--cream-dark:#ede8df;--white:#ffffff;--text:#1a1a2e;--text-light:#4a5568;
+    --border:#d4cfc6;--shadow:0 4px 24px rgba(13,31,60,0.10);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{font-family:'Source Sans 3',sans-serif;background:var(--cream);color:var(--text);min-height:100vh;}
+  header{background:var(--navy);position:relative;overflow:hidden;}
+  header::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(-45deg,transparent,transparent 40px,rgba(201,168,76,0.03) 40px,rgba(201,168,76,0.03) 80px);}
+  .header-inner{max-width:1200px;margin:0 auto;padding:44px 32px 36px;position:relative;z-index:1;}
+  .header-top{display:flex;align-items:center;gap:18px;margin-bottom:6px;}
+  .crest{width:50px;height:50px;background:var(--gold);clip-path:polygon(50% 0%,100% 25%,100% 75%,50% 100%,0% 75%,0% 25%);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+  .crest-inner{width:26px;height:26px;background:var(--navy);clip-path:polygon(50% 0%,100% 25%,100% 75%,50% 100%,0% 75%,0% 25%);}
+  .header-title{font-family:'Playfair Display',serif;font-size:clamp(1.5rem,3.5vw,2.5rem);font-weight:700;color:var(--white);letter-spacing:-0.02em;line-height:1.1;}
+  .header-title span{color:var(--gold);}
+  .header-sub{color:rgba(255,255,255,0.5);font-size:0.82rem;letter-spacing:0.14em;text-transform:uppercase;margin-top:10px;padding-left:68px;}
+  .gold-rule{width:56px;height:2px;background:var(--gold);margin:14px 0 0 68px;}
+  .stats-bar{background:var(--navy-mid);border-top:1px solid rgba(201,168,76,0.18);}
+  .stats-inner{max-width:1200px;margin:0 auto;padding:12px 32px;display:flex;gap:28px;flex-wrap:wrap;}
+  .stat{display:flex;align-items:center;gap:7px;color:rgba(255,255,255,0.6);font-size:0.75rem;letter-spacing:0.09em;text-transform:uppercase;}
+  .stat strong{color:var(--gold);font-size:0.98rem;font-weight:600;letter-spacing:0;text-transform:none;}
+  main{max-width:1200px;margin:0 auto;padding:32px 32px 60px;}
+  .filters-card{background:var(--white);border:1px solid var(--border);border-radius:4px;padding:22px 26px;margin-bottom:24px;box-shadow:var(--shadow);}
+  .filters-label{font-family:'Playfair Display',serif;font-size:0.72rem;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:var(--navy);margin-bottom:14px;display:flex;align-items:center;gap:10px;}
+  .filters-label::after{content:'';flex:1;height:1px;background:var(--border);}
+  .filters-row{display:grid;grid-template-columns:2fr 1fr 1fr 1fr 1fr auto;gap:10px;align-items:end;}
+  .filter-group{display:flex;flex-direction:column;gap:5px;}
+  .filter-group label{font-size:0.68rem;font-weight:600;letter-spacing:0.11em;text-transform:uppercase;color:var(--text-light);}
+  .filter-group input,.filter-group select{font-family:'Source Sans 3',sans-serif;font-size:0.875rem;padding:8px 11px;border:1px solid var(--border);border-radius:3px;background:var(--cream);color:var(--text);outline:none;transition:border-color 0.15s,box-shadow 0.15s;-webkit-appearance:none;appearance:none;}
+  .filter-group select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='11' height='7' viewBox='0 0 11 7'%3E%3Cpath d='M1 1l4.5 4.5L10 1' stroke='%234a5568' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 11px center;padding-right:30px;cursor:pointer;}
+  .filter-group input:focus,.filter-group select:focus{border-color:var(--navy-light);box-shadow:0 0 0 3px rgba(37,72,128,0.09);background:var(--white);}
+  .btn-reset{font-family:'Source Sans 3',sans-serif;font-size:0.75rem;font-weight:600;letter-spacing:0.09em;text-transform:uppercase;padding:8px 16px;background:transparent;border:1px solid var(--navy);color:var(--navy);border-radius:3px;cursor:pointer;transition:all 0.15s;white-space:nowrap;height:fit-content;}
+  .btn-reset:hover{background:var(--navy);color:var(--white);}
+  .results-meta{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;padding:0 2px;}
+  .results-count{font-size:0.8rem;color:var(--text-light);}
+  .results-count strong{color:var(--navy);font-weight:600;}
+  .table-wrap{background:var(--white);border:1px solid var(--border);border-radius:4px;box-shadow:var(--shadow);overflow-x:auto;}
+  table{width:100%;border-collapse:collapse;font-size:0.86rem;}
+  thead{background:var(--navy);}
+  thead th{font-size:0.67rem;font-weight:600;letter-spacing:0.13em;text-transform:uppercase;color:rgba(255,255,255,0.65);padding:12px 16px;text-align:left;cursor:pointer;user-select:none;white-space:nowrap;transition:color 0.15s;}
+  thead th:hover{color:var(--gold);}
+  thead th.sorted{color:var(--gold-light);}
+  .sort-arrow{margin-left:4px;font-size:0.6rem;opacity:0.5;}
+  .sorted .sort-arrow{opacity:1;}
+  tbody tr{border-bottom:1px solid var(--cream-dark);transition:background 0.1s;}
+  tbody tr:last-child{border-bottom:none;}
+  tbody tr:hover{background:#f0eee8;}
+  tbody td{padding:11px 16px;vertical-align:middle;}
+  .school-name{font-weight:600;color:var(--navy);white-space:nowrap;}
+  .opponent-wrap{display:flex;flex-direction:column;gap:3px;}
+  .opponent-name{color:var(--text);}
+  .date-cell,.time-cell{white-space:nowrap;color:var(--text-light);font-size:0.82rem;}
+  .location-cell{color:var(--text-light);font-size:0.82rem;max-width:180px;}
+  .badge{display:inline-block;font-size:0.62rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;padding:2px 7px;border-radius:2px;white-space:nowrap;}
+  .badge-isl{background:#e8f0fe;color:#1a3a8c;}
+  .badge-nesll{background:#fce8f3;color:#7a1a5c;}
+  .badge-lakesregion{background:#e6f4ea;color:#1e5c35;}
+  .badge-miaa{background:#fff3e0;color:#8c4a00;}
+  .badge-nhiaa{background:#e8f5e9;color:#1b5e20;}
+  .badge-tournament{background:#fef3e2;color:#8c5a00;}
+  .badge-nonleague{background:var(--cream-dark);color:var(--text-light);}
+  .game-type-league{font-size:0.72rem;font-weight:600;color:#1e5c35;}
+  .game-type-nonleague{font-size:0.72rem;color:var(--text-light);}
+  .game-type-tournament{font-size:0.72rem;font-weight:600;color:#8c5a00;}
+  .game-type-scrimmage{font-size:0.72rem;color:#888;font-style:italic;}
+  .ha-home{font-size:0.72rem;font-weight:600;color:#1e5c35;}
+  .ha-away{font-size:0.72rem;font-weight:600;color:#7a3020;}
+  .no-results{text-align:center;padding:56px 20px;color:var(--text-light);}
+  .no-results-title{font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--navy);margin-bottom:8px;}
+  footer{background:var(--navy);color:rgba(255,255,255,0.4);text-align:center;padding:20px;font-size:0.75rem;letter-spacing:0.06em;}
+  footer span{color:var(--gold);}
+  @media(max-width:768px){
+    .header-inner{padding:32px 20px 28px;}
+    .header-sub,.gold-rule{padding-left:0;margin-left:0;}
+    .stats-inner{padding:10px 20px;gap:16px;}
+    main{padding:20px 16px 40px;}
+    .filters-card{padding:16px 18px;}
+    .filters-row{grid-template-columns:1fr 1fr;}
+    .filters-row .filter-group:first-child{grid-column:1/-1;}
+    .filters-row .btn-reset{grid-column:1/-1;width:100%;}
+    thead th,tbody td{padding:9px 12px;}
+    .location-cell{display:none;}
+  }
+</style>
+</head>
+<body>
+<header>
+  <div class="header-inner">
+    <div class="header-top">
+      <div class="crest"><div class="crest-inner"></div></div>
+      <h1 class="header-title">Massachusetts <span>&</span> New Hampshire<br>Boys Lacrosse</h1>
+    </div>
+    <p class="header-sub">2026 Season · Varsity Schedules</p>
+    <div class="gold-rule"></div>
+  </div>
+  <div class="stats-bar">
+    <div class="stats-inner">
+      <div class="stat"><strong id="stat-games">197</strong> Games</div>
+      <div class="stat"><strong id="stat-schools">22</strong> Schools</div>
+      <div class="stat"><strong>ISL · NESLL · MIAA · NHIAA</strong></div>
+      <div class="stat"><strong>2026</strong> Season</div>
+    </div>
+  </div>
+</header>
+<main>
+  <div class="filters-card">
+    <div class="filters-label">Filter Schedule</div>
+    <div class="filters-row">
+      <div class="filter-group">
+        <label>Search</label>
+        <input type="text" id="search" placeholder="School, opponent, location…">
+      </div>
+      <div class="filter-group">
+        <label>School</label>
+        <select id="filter-school"><option value="">All Schools</option></select>
+      </div>
+      <div class="filter-group">
+        <label>League</label>
+        <select id="filter-league">
+          <option value="">All Leagues</option>
+          <option value="NESLL">NESLL</option>
+          <option value="ISL">ISL</option>
+          <option value="Lakes Region">Lakes Region</option>
+          <option value="MIAA">MIAA</option>
+          <option value="NHIAA">NHIAA</option>
+        </select>
+      </div>
+      <div class="filter-group">
+        <label>Game Type</label>
+        <select id="filter-gametype">
+          <option value="">All Games</option>
+          <option value="League">League</option>
+          <option value="Non-League">Non-League</option>
+          <option value="Tournament">Tournament</option>
+          <option value="Scrimmage">Scrimmage</option>
+        </select>
+      </div>
+      <div class="filter-group">
+        <label>Home / Away</label>
+        <select id="filter-ha">
+          <option value="">All</option>
+          <option value="Home">Home</option>
+          <option value="Away">Away</option>
+        </select>
+      </div>
+      <button class="btn-reset" onclick="resetFilters()">Reset</button>
+    </div>
+  </div>
+  <div class="results-meta">
+    <div class="results-count">Showing <strong id="count">0</strong> games</div>
+  </div>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th onclick="sortBy('school')" id="th-school">School <span class="sort-arrow">↕</span></th>
+          <th onclick="sortBy('opponent')" id="th-opponent">Opponent <span class="sort-arrow">↕</span></th>
+          <th onclick="sortBy('date')" id="th-date" class="sorted">Date <span class="sort-arrow">↑</span></th>
+          <th onclick="sortBy('time')" id="th-time">Time <span class="sort-arrow">↕</span></th>
+          <th onclick="sortBy('location')" id="th-location">Location <span class="sort-arrow">↕</span></th>
+          <th onclick="sortBy('home_away')" id="th-home_away">H/A <span class="sort-arrow">↕</span></th>
+          <th onclick="sortBy('game_type')" id="th-game_type">Type <span class="sort-arrow">↕</span></th>
+        </tr>
+      </thead>
+      <tbody id="table-body"></tbody>
+    </table>
+  </div>
+</main>
+<footer><span>massnhhslacrosse.com</span> · 2026 Boys Lacrosse · Massachusetts & New Hampshire</footer>
+<script>
+const DATA = [
+  {game_id:'20260321-KUA-PINGREE',school:'Pingree',opponent:'Kimball Union Academy',date:'2026-03-21',time:'12:45 PM',location:'Southern New Hampshire',home_away:'Away',school_league:'NESLL',game_type:'Non-League',opponent_league:'Lakes Region'},
+  {game_id:'20260328-PINGREE-MIDDLESEX',school:'Pingree',opponent:'Middlesex School',date:'2026-03-28',time:'3:00 PM',location:'Pingree School',home_away:'Home',school_league:'NESLL',game_type:'Non-League',opponent_league:'ISL'},
+  {game_id:'20260404-PINGREE-BREWSTER',school:'Pingree',opponent:'Brewster Academy',date:'2026-04-04',time:'3:15 PM',location:'Pingree School',home_away:'Home',school_league:'NESLL',game_type:'Non-League',opponent_league:'Lakes Region'},
+  {game_id:'20260406-BROOKS-PINGREE',school:'Pingree',opponent:'Brooks School',date:'2026-04-06',time:'4:45 PM',location:'Brooks School',home_away:'Away',school_league:'NESLL',game_type:'Non-League',opponent_league:'ISL'},
+  {game_id:'20260408-HOLDERNESS-PINGREE',school:'Pingree',opponent:'Holderness School',date:'2026-04-08',time:'4:30 PM',location:'Holderness School',home_away:'Away',school_league:'NESLL',game_type:'Non-League',opponent_league:'Lakes Region'},
+  {game_id:'20260413-MILTON-PINGREE',school:'Pingree',opponent:'Milton Academy',date:'2026-04-13',time:'5:15 PM',location:'Milton Academy',home_away:'Away',school_league:'NESLL',game_type:'Non-League',opponent_league:'ISL'},
+  {game_id:'20260415-BERWICK-PINGREE',school:'Pingree',opponent:'Berwick Academy',date:'2026-04-15',time:'4:15 PM',location:'Berwick Academy',home_away:'Away',school_league:'NESLL',game_type:'Non-League',opponent_league:'Non-League'},
+  {game_id:'20260424-STPAULS-PINGREE',school:'Pingree',opponent:'St. Paul\'s School',date:'2026-04-24',time:'5:30 PM',location:'St. Paul\'s School',home_away:'Away',school_league:'NESLL',game_type:'Non-League',opponent_league:'Lakes Region'},
+  {game_id:'20260425-PINGREE-DEXTERSOUT',school:'Pingree',opponent:'Dexter Southfield School',date:'2026-04-25',time:'12:00 PM',location:'Pingree School',home_away:'Home',school_league:'NESLL',game_type:'Non-League',opponent_league:'Non-League'},
+  {game_id:'20260429-CUSHING-PINGREE',school:'Pingree',opponent:'Cushing Academy',date:'2026-04-29',time:'5:30 PM',location:'Cushing Academy',home_away:'Away',school_league:'NESLL',game_type:'League',opponent_league:'NESLL'},
+  {game_id:'20260501-PINGREE-NMH',school:'Pingree',opponent:'Northfield Mount Hermon School',date:'2026-05-01',time:'5:00 PM',location:'Pingree School',home_away:'Home',school_league:'NESLL',game_type:'League',opponent_league:'NESLL'},
+  {game_id:'20260502-NEWHAMPTON-PINGREE',school:'Pingree',opponent:'New Hampton School',date:'2026-05-02',time:'3:45 PM',location:'New Hampton School',home_away:'Away',school_league:'NESLL',game_type:'Non-League',opponent_league:'Lakes Region'},
+  {game_id:'20260504-PROCTOR-PINGREE',school:'Pingree',opponent:'Proctor Academy',date:'2026-05-04',time:'5:30 PM',location:'Proctor Academy',home_away:'Away',school_league:'NESLL',game_type:'Non-League',opponent_league:'Lakes Region'},
+  {game_id:'20260506-PINGREE-PORTSMOUTHABBEY',school:'Pingree',opponent:'Portsmouth Abbey School',date:'2026-05-06',time:'5:15 PM',location:'Pingree School',home_away:'Home',school_league:'NESLL',game_type:'League',opponent_league:'NESLL'},
+  {game_id:'20260511-PINGREE-AUSTINPREP',school:'Pingree',opponent:'Austin Preparatory School',date:'2026-05-11',time:'4:30 PM',location:'Pingree School',home_away:'Home',school_league:'NESLL',game_type:'League',opponent_league:'NESLL'},
+  {game_id:'20260513-PINGREE-EXETER',school:'Pingree',opponent:'Phillips Exeter Academy',date:'2026-05-13',time:'3:30 PM',location:'Pingree School',home_away:'Home',school_league:'NESLL',game_type:'League',opponent_league:'NESLL'},
+  {game_id:'20260515-NESLL-PINGREE',school:'Pingree',opponent:'NESLL Tournament',date:'2026-05-15',time:'All Day',location:'Dexter Southfield School',home_away:'Away',school_league:'NESLL',game_type:'Tournament',opponent_league:'Tournament'},
+  {game_id:'20260520-PINGREE-ANDOVER',school:'Pingree',opponent:'Phillips Academy Andover',date:'2026-05-20',time:'4:00 PM',location:'Pingree School',home_away:'Home',school_league:'NESLL',game_type:'Non-League',opponent_league:'MIAA'},
+  {game_id:'20260305-DEXTER-BELMONTHILL',school:'Dexter Southfield',opponent:'Belmont Hill School',date:'2026-03-05',time:'4:00 PM',location:'Dexter Southfield - Main Field',home_away:'Home',school_league:'NESLL',game_type:'Non-League',opponent_league:'ISL'},
+  {game_id:'20260319-DEXTER-ALBANY',school:'Dexter Southfield',opponent:'Albany Academy',date:'2026-03-19',time:'2:00 PM',location:'Dexter Southfield - Main Field',home_away:'Home',school_league:'NESLL',game_type:'Non-League',opponent_league:'Non-League'},
+  {game_id:'20260321-DEXTER-STJOHNSPREP',school:'Dexter Southfield',opponent:'St. John\'s Preparatory School',date:'2026-03-21',time:'10:00 AM',location:'Dexter Southfield - Main Field',home_away:'Home',school_league:'NESLL',game_type:'Non-League',opponent_league:'MIAA'},
+  {game_id:'20260323-DEXTER-BROOKS',school:'Dexter Southfield',opponent:'Brooks School',date:'2026-03-23',time:'4:15 PM',location:'Dexter Southfield - Main Field',home_away:'Home',school_league:'NESLL',game_type:'Non-League',opponent_league:'ISL'},
+  {game_id:'20260325-DEXTER-EVEREST',school:'Dexter Southfield',opponent:'Everest Academy',date:'2026-03-25',time:'3:00 PM',location:'Dexter Southfield - Main Field',home_away:'Home',school_league:'NESLL',game_type:'Non-League',opponent_league:'Non-League'},
+  {game_id:'20260328-DEXTER-STMARKS',school:'Dexter Southfield',opponent:'St. Mark\'s School',date:'2026-03-28',time:'3:30 PM',location:'Dexter Southfield - Main Field',home_away:'Home',school_league:'NESLL',game_type:'Non-League',opponent_league:'ISL'},
+  {game_id:'20260401-DEXTER-BBN',school:'Dexter Southfield',opponent:'Buckingham Browne and Nichols School',date:'2026-04-01',time:'3:30 PM',location:'Dexter Southfield - Main Field',home_away:'Home',school_league:'NESLL',game_type:'Non-League',opponent_league:'ISL'},
+  {game_id:'20260403-NEWHAMPTON-DEXTER',school:'Dexter Southfield',opponent:'New Hampton School',date:'2026-04-03',time:'5:00 PM',location:'New Hampton School',home_away:'Away',school_league:'NESLL',game_type:'Non-League',opponent_league:'Lakes Region'},
+  {game_id:'20260406-MILTON-DEXTER',school:'Dexter Southfield',opponent:'Milton Academy',date:'2026-04-06',time:'5:00 PM',location:'Milton Academy',home_away:'Away',school_league:'NESLL',game_type:'Non-League',opponent_league:'ISL'},
+  {game_id:'20260408-DEXTER-WILLISTON',school:'Dexter Southfield',opponent:'Williston Northampton School',date:'2026-04-08',time:'4:00 PM',location:'Dexter Southfield - Main Field',home_away:'Home',school_league:'NESLL',game_type:'Non-League',opponent_league:'Non-League'},
+  {game_id:'20260411-NMH-DEXTER',school:'Dexter Southfield',opponent:'Northfield Mount Hermon School',date:'2026-04-11',time:'1:00 PM',location:'Northfield Mount Hermon School',home_away:'Away',school_league:'NESLL',game_type:'League',opponent_league:'NESLL'},
+  {game_id:'20260413-STGEORGE-DEXTER',school:'Dexter Southfield',opponent:'St. George\'s School',date:'2026-04-13',time:'5:00 PM',location:'St. George\'s School',home_away:'Away',school_league:'NESLL',game_type:'Non-League',opponent_league:'ISL'},
+  {game_id:'20260415-DEXTER-STPAULS',school:'Dexter Southfield',opponent:'St. Paul\'s School',date:'2026-04-15',time:'4:00 PM',location:'Dexter Southfield - Main Field',home_away:'Home',school_league:'NESLL',game_type:'Non-League',opponent_league:'Lakes Region'},
+  {game_id:'20260418-DEXTER-EXETER',school:'Dexter Southfield',opponent:'Phillips Exeter Academy',date:'2026-04-18',time:'4:30 PM',location:'Dexter Southfield - Main Field',home_away:'Home',school_league:'NESLL',game_type:'League',opponent_league:'NESLL'},
+  {game_id:'20260424-TABOR-DEXTER',school:'Dexter Southfield',opponent:'Tabor Academy',date:'2026-04-24',time:'5:00 PM',location:'Tabor Academy',home_away:'Away',school_league:'NESLL',game_type:'Non-League',opponent_league:'ISL'},
+  {game_id:'20260425-PINGREESCH-DEXTER',school:'Dexter Southfield',opponent:'Pingree School',date:'2026-04-25',time:'12:00 PM',location:'Pingree School',home_away:'Away',school_league:'NESLL',game_type:'Non-League',opponent_league:'Non-League'},
+  {game_id:'20260429-DEXTER-PORTSMOUTHABBEY',school:'Dexter Southfield',opponent:'Portsmouth Abbey School',date:'2026-04-29',time:'3:30 PM',location:'Dexter Southfield - Main Field',home_away:'Home',school_league:'NESLL',game_type:'League',opponent_league:'NESLL'},
+  {game_id:'20260501-DEXTER-AUSTINPREP',school:'Dexter Southfield',opponent:'Austin Preparatory School',date:'2026-05-01',time:'3:30 PM',location:'Dexter Southfield - Main Field',home_away:'Home',school_league:'NESLL',game_type:'League',opponent_league:'NESLL'},
+  {game_id:'20260506-DEXTER-CUSHING',school:'Dexter Southfield',opponent:'Cushing Academy',date:'2026-05-06',time:'5:30 PM',location:'Dexter Southfield - Main Field',home_away:'Home',school_league:'NESLL',game_type:'League',opponent_league:'NESLL'},
+  {game_id:'20260508-DEXTER-WELLS',school:'Dexter Southfield',opponent:'Wells High School',date:'2026-05-08',time:'5:30 PM',location:'Dexter Southfield - Main Field',home_away:'Home',school_league:'NESLL',game_type:'Non-League',opponent_league:'MIAA'},
+  {game_id:'20260513-ANDOVER-DEXTER',school:'Dexter Southfield',opponent:'Phillips Academy',date:'2026-05-13',time:'3:30 PM',location:'Phillips Academy',home_away:'Away',school_league:'NESLL',game_type:'Non-League',opponent_league:'MIAA'},
+  {game_id:'20260515-DEXTER-TBD',school:'Dexter Southfield',opponent:'TBD',date:'2026-05-15',time:'5:00 PM',location:'Dexter Southfield - Main Field',home_away:'Home',school_league:'NESLL',game_type:'Tournament',opponent_league:'Non-League'},
+  {game_id:'20260515-DEXTER-TBD-2',school:'Dexter Southfield',opponent:'TBD',date:'2026-05-15',time:'6:45 PM',location:'Dexter Southfield - Main Field',home_away:'Home',school_league:'NESLL',game_type:'Tournament',opponent_league:'Non-League'},
+  {game_id:'20260305-EXETER-BRIDGTON',school:'Phillips Exeter',opponent:'Bridgton Academy',date:'2026-03-05',time:'5:30 PM',location:'Exeter NH - Phelps Stadium',home_away:'Home',school_league:'NESLL',game_type:'Non-League',opponent_league:'Non-League'},
+  {game_id:'20260327-EXETER-AUSTINPREP',school:'Phillips Exeter',opponent:'Austin Preparatory School',date:'2026-03-27',time:'5:00 PM',location:'Exeter NH - Phelps Stadium',home_away:'Home',school_league:'NESLL',game_type:'League',opponent_league:'NESLL'},
+  {game_id:'20260328-GOVS-EXETER',school:'Phillips Exeter',opponent:'Governor\'s Academy',date:'2026-03-28',time:'1:00 PM',location:'Byfield MA',home_away:'Away',school_league:'NESLL',game_type:'Non-League',opponent_league:'ISL'},
+  {game_id:'20260401-EXETER-HOLDERNESS',school:'Phillips Exeter',opponent:'Holderness School',date:'2026-04-01',time:'2:30 PM',location:'Exeter NH - Phelps Stadium',home_away:'Home',school_league:'NESLL',game_type:'Non-League',opponent_league:'Lakes Region'},
+  {game_id:'20260404-CUSHING-EXETER',school:'Phillips Exeter',opponent:'Cushing Academy',date:'2026-04-04',time:'3:00 PM',location:'Ashburnham MA',home_away:'Away',school_league:'NESLL',game_type:'League',opponent_league:'NESLL'},
+  {game_id:'20260408-DEERFIELD-EXETER',school:'Phillips Exeter',opponent:'Deerfield Academy',date:'2026-04-08',time:'4:30 PM',location:'Deerfield MA',home_away:'Away',school_league:'NESLL',game_type:'Non-League',opponent_league:'Non-League'},
+  {game_id:'20260411-EXETER-PORTSMOUTHABBEY',school:'Phillips Exeter',opponent:'Portsmouth Abbey School',date:'2026-04-11',time:'4:00 PM',location:'Exeter NH - Phelps Stadium',home_away:'Home',school_league:'NESLL',game_type:'League',opponent_league:'NESLL'},
+  {game_id:'20260413-BELMONTHILL-EXETER',school:'Phillips Exeter',opponent:'Belmont Hill School',date:'2026-04-13',time:'4:30 PM',location:'Belmont MA',home_away:'Away',school_league:'NESLL',game_type:'Non-League',opponent_league:'ISL'},
+  {game_id:'20260415-EXETER-POMFRET',school:'Phillips Exeter',opponent:'Pomfret School',date:'2026-04-15',time:'4:00 PM',location:'Exeter NH - Phelps Stadium',home_away:'Home',school_league:'NESLL',game_type:'Non-League',opponent_league:'Non-League'},
+  {game_id:'20260418-DEXTERSCHOOL-EXETER',school:'Phillips Exeter',opponent:'Dexter School',date:'2026-04-18',time:'12:30 PM',location:'Brookline MA',home_away:'Away',school_league:'NESLL',game_type:'Non-League',opponent_league:'Non-League'},
+  {game_id:'20260422-EXETER-NEWHAMPTON',school:'Phillips Exeter',opponent:'New Hampton School',date:'2026-04-22',time:'2:30 PM',location:'Exeter NH - Phelps Stadium',home_away:'Home',school_league:'NESLL',game_type:'Non-League',opponent_league:'Lakes Region'},
+  {game_id:'20260425-LOOMIS-EXETER',school:'Phillips Exeter',opponent:'Loomis Chaffee School',date:'2026-04-25',time:'3:00 PM',location:'Windsor CT',home_away:'Away',school_league:'NESLL',game_type:'Non-League',opponent_league:'Non-League'},
+  {game_id:'20260429-EXETER-BREWSTER',school:'Phillips Exeter',opponent:'Brewster Academy',date:'2026-04-29',time:'3:30 PM',location:'Exeter NH - Phelps Stadium',home_away:'Home',school_league:'NESLL',game_type:'Non-League',opponent_league:'Lakes Region'},
+  {game_id:'20260502-EXETER-STPAULS',school:'Phillips Exeter',opponent:'St. Paul\'s School',date:'2026-05-02',time:'3:30 PM',location:'Exeter NH - Phelps Stadium',home_away:'Home',school_league:'NESLL',game_type:'Non-League',opponent_league:'Lakes Region'},
+  {game_id:'20260506-EXETER-KUA',school:'Phillips Exeter',opponent:'Kimball Union Academy',date:'2026-05-06',time:'3:00 PM',location:'Exeter NH - Phelps Stadium',home_away:'Home',school_league:'NESLL',game_type:'Non-League',opponent_league:'Lakes Region'},
+  {game_id:'20260508-PROCTOR-EXETER',school:'Phillips Exeter',opponent:'Proctor Academy',date:'2026-05-08',time:'5:00 PM',location:'Andover NH',home_away:'Away',school_league:'NESLL',game_type:'Non-League',opponent_league:'Lakes Region'},
+  {game_id:'20260509-EXETER-NMH',school:'Phillips Exeter',opponent:'Northfield Mount Hermon School',date:'2026-05-09',time:'12:00 PM',location:'Exeter NH - Phelps Stadium',home_away:'Home',school_league:'NESLL',game_type:'League',opponent_league:'NESLL'},
+  {game_id:'20260513-PINGREESCH-EXETER',school:'Phillips Exeter',opponent:'Pingree School',date:'2026-05-13',time:'3:30 PM',location:'Hamilton MA',home_away:'Away',school_league:'NESLL',game_type:'Non-League',opponent_league:'Non-League'},
+  {game_id:'20260520-EXETER-NOBLES',school:'Phillips Exeter',opponent:'Noble and Greenough School',date:'2026-05-20',time:'5:00 PM',location:'Exeter NH - Phelps Stadium',home_away:'Home',school_league:'NESLL',game_type:'Non-League',opponent_league:'ISL'},
+  {game_id:'20260523-ANDOVER-EXETER',school:'Phillips Exeter',opponent:'Phillips Academy Andover',date:'2026-05-23',time:'2:00 PM',location:'Exeter NH',home_away:'Away',school_league:'NESLL',game_type:'Non-League',opponent_league:'MIAA'},
+  {game_id:'20260325-TILTON-STMARKS',school:'Tilton',opponent:'St. Mark\'s',date:'2026-03-25',time:'TBD',location:'Tilton School',home_away:'Home',school_league:'Lakes Region',game_type:'Non-League',opponent_league:'ISL'},
+  {game_id:'20260330-STMARKS-LAWRENCE',school:'St. Mark\'s',opponent:'Lawrence Academy',date:'2026-03-30',time:'TBD',location:'St. Mark\'s School',home_away:'Home',school_league:'ISL',game_type:'League',opponent_league:'ISL'},
+  {game_id:'20260401-STSEB-GOVS',school:'St. Sebastian\'s',opponent:'Governor\'s Academy',date:'2026-04-01',time:'TBD',location:'St. Sebastian\'s School',home_away:'Home',school_league:'ISL',game_type:'League',opponent_league:'ISL'},
+  {game_id:'20260401-STMARKS-WORCESTER',school:'St. Mark\'s',opponent:'Worcester Academy',date:'2026-04-01',time:'TBD',location:'St. Mark\'s School',home_away:'Home',school_league:'ISL',game_type:'Non-League',opponent_league:'MIAA'},
+  {game_id:'20260403-STMARKS-THAYER',school:'St. Mark\'s',opponent:'Thayer Academy',date:'2026-04-03',time:'TBD',location:'St. Mark\'s School',home_away:'Home',school_league:'ISL',game_type:'League',opponent_league:'ISL'},
+  {game_id:'20260403-MILTON-BELMONTHILL',school:'Milton Academy',opponent:'Belmont Hill',date:'2026-04-03',time:'TBD',location:'Milton Academy',home_away:'Home',school_league:'ISL',game_type:'League',opponent_league:'ISL'},
+  {game_id:'20260403-NOBLES-LAWRENCE',school:'Noble & Greenough',opponent:'Lawrence Academy',date:'2026-04-03',time:'TBD',location:'Noble & Greenough School',home_away:'Home',school_league:'ISL',game_type:'League',opponent_league:'ISL'},
+  {game_id:'20260404-STGEORGE-STSEB',school:'St. George\'s',opponent:'St. Sebastian\'s',date:'2026-04-04',time:'TBD',location:'St. George\'s School',home_away:'Home',school_league:'ISL',game_type:'League',opponent_league:'ISL'},
+  {game_id:'20260404-RIVERS-RL',school:'Rivers School',opponent:'Roxbury Latin School',date:'2026-04-04',time:'TBD',location:'Rivers School',home_away:'Home',school_league:'ISL',game_type:'League',opponent_league:'ISL'},
+  {game_id:'20260404-GROTON-BROOKS',school:'Groton',opponent:'Brooks',date:'2026-04-04',time:'TBD',location:'Groton School',home_away:'Home',school_league:'ISL',game_type:'League',opponent_league:'ISL'},
+  {game_id:'20260404-TABOR-GOVS',school:'Tabor Academy',opponent:'Governor\'s Academy',date:'2026-04-04',time:'TBD',location:'Tabor Academy',home_away:'Home',school_league:'ISL',game_type:'League',opponent_league:'ISL'},
+  {game_id:'20260404-BBN-MIDDLESEX',school:'Buckingham Browne & Nichols',opponent:'Middlesex',date:'2026-04-04',time:'TBD',location:'BB&N',home_away:'Home',school_league:'ISL',game_type:'League',opponent_league:'ISL'},
+  {game_id:'20260408-RIVERS-MILTON',school:'Rivers School',opponent:'Milton Academy',date:'2026-04-08',time:'TBD',location:'Rivers School',home_away:'Home',school_league:'ISL',game_type:'League',opponent_league:'ISL'},
+  {game_id:'20260408-LAWRENCE-BELMONTHILL',school:'Lawrence Academy',opponent:'Belmont Hill',date:'2026-04-08',time:'TBD',location:'Lawrence Academy',home_away:'Home',school_league:'ISL',game_type:'League',opponent_league:'ISL'},
+  {game_id:'20260408-RL-GROTON',school:'Roxbury Latin School',opponent:'Groton',date:'2026-04-08',time:'TBD',location:'Roxbury Latin School',home_away:'Home',school_league:'ISL',game_type:'League',opponent_league:'ISL'},
+  {game_id:'20260408-STMARKS-STSEB',school:'St. Mark\'s',opponent:'St. Sebastian\'s',date:'2026-04-08',time:'TBD',location:'St. Mark\'s School',home_away:'Home',school_league:'ISL',game_type:'League',opponent_league:'ISL'},
+  {game_id:'20260408-BROOKS-TABOR',school:'Brooks',opponent:'Tabor Academy',date:'2026-04-08',time:'TBD',location:'Brooks School',home_away:'Home',school_league:'ISL',game_type:'League',opponent_league:'ISL'},
+  {game_id:'20260408-BBN-STGEORGE',school:'Buckingham Browne & Nichols',opponent:'St. George\'s',date:'2026-04-08',time:'TBD',location:'BB&N',home_away:'Home',school_league:'ISL',game_type:'League',opponent_league:'ISL'},
+  {game_id:'20260408-MIDDLESEX-NOBLES',school:'Middlesex',opponent:'Noble & Greenough',date:'2026-04-08',time:'TBD',location:'Middlesex School',home_away:'Home',school_league:'ISL',game_type:'League',opponent_league:'ISL'},
+  {game_id:'20260408-GOVS-THAYER',school:'Governor\'s Academy',opponent:'Thayer Academy',date:'2026-04-08',time:'TBD',location:'Governor\'s Academy',home_away:'Home',school_league:'ISL',game_type:'League',opponent_league:'ISL'},
+  {game_id:'20260410-RIVERS-NOBLES',school:'Rivers School',opponent:'Noble & Greenough',date:'2026-04-10',time:'TBD',location:'Rivers School',home_away:'Home',school_league:'ISL',game_type:'League',opponent_league:'ISL'},
+  {game_id:'20260410-RL-MIDDLESEX',school:'Roxbury Latin School',opponent:'Middlesex',date:'2026-04-10',time:'TBD',location:'Roxbury Latin School',home_away:'Home',school_league:'ISL',game_type:'League',opponent_league:'ISL'},
+  {game_id:'20260411-THAYER-STSEB',school:'Thayer Academy',opponent:'St. Sebastian\'s',date:'2026-04-11',time:'TBD',location:'Thayer Academy',home_away:'Home',school_league:'ISL',game_type:'League',opponent_league:'ISL'},
+  {game_id:'20260411-TABOR-BELMONTHILL',school:'Tabor Academy',opponent:'Belmont Hill',date:'2026-04-11',time:'TBD',location:'Tabor Academy',home_away:'Home',school_league:'ISL',game_type:'League',opponent_league:'ISL'},
+  {game_id:'20260411-BROOKS-MILTON',school:'Brooks',opponent:'Milton Academy',date:'2026-04-11',time:'TBD',location:'Brooks School',home_away:'Home',school_league:'ISL',game_type:'League',opponent_league:'ISL'},
+  {game_id:'20260411-GROTON-STGEORGE',school:'Groton',opponent:'St. George\'s',date:'2026-04-11',time:'TBD',location:'Groton School',home_away:'Home',school_league:'ISL',game_type:'League',opponent_league:'ISL'},
+  {game_id:'20260411-BBN-STMARKS',school:'Buckingham Browne & Nichols',opponent:'St. Mark\'s',date:'2026-04-11',time:'TBD',location:'BB&N',home_away:'Home',school_league:'ISL',game_type:'League',opponent_league:'ISL'},
+  {game_id:'20260411-LAWRENCE-GOVS',school:'Lawrence Academy',opponent:'Governor\'s Academy',date:'2026-04-11',time:'TBD',location:'Lawrence Academy',home_away:'Home',school_league:'ISL',game_type:'League',opponent_league:'ISL'},
+  {game_id:'20260413-MIDDLESEX-RIVERS',school:'Middlesex',opponent:'Rivers School',date:'2026-04-13',time:'TBD',location:'Middlesex School',home_away:'Home',school_league:'ISL',game_type:'League',opponent_league:'ISL'},
+  {game_id:'20260415-STMARKS-RIVERS',school:'St. Mark\'s',opponent:'Rivers School',date:'2026-04-15',time:'TBD',location:'St. Mark\'s School',home_away:'Home',school_league:'ISL',game_type:'League',opponent_league:'ISL'},
+  {game_id:'20260415-BELMONTHILL-STGEORGE',school:'Belmont Hill',opponent:'St. George\'s',date:'2026-04-15',time:'TBD',location:'Belmont Hill School',home_away:'Home',school_league:'ISL',game_type:'League',opponent_league:'ISL'},
+  {game_id:'20260415-TABOR-RL',school:'Tabor Academy',opponent:'Roxbury Latin School',date:'2026-04-15',time:'TBD',location:'Tabor Academy',home_away:'Home',school_league:'ISL',game_type:'League',opponent_league:'ISL'},
+  {game_id:'20260415-STSEB-MILTON',school:'St. Sebastian\'s',opponent:'Milton Academy',date:'2026-04-15',time:'TBD',location:'St. Sebastian\'s School',home_away:'Home',school_league:'ISL',game_type:'League',opponent_league:'ISL'},
+  {game_id:'20260415-MIDDLESEX-BROOKS',school:'Middlesex',opponent:'Brooks',date:'2026-04-15',time:'TBD',location:'Middlesex School',home_away:'Home',school_league:'ISL',game_type:'League',opponent_league:'ISL'},
+  {game_id:'20260415-GROTON-THAYER',school:'Groton',opponent:'Thayer Academy',date:'2026-04-15',time:'TBD',location:'Groton School',home_away:'Home',school_league:'ISL',game_type:'League',opponent_league:'ISL'},
+  {game_id:'20260415-LAWRENCE-BBN',school:'Lawrence Academy',opponent:'Buckingham Browne & Nichols',date:'2026-04-15',time:'TBD',location:'Lawrence Academy',home_away:'Home',school_league:'ISL',game_type:'League',opponent_league:'ISL'},
+  {game_id:'20260415-NOBLES-GOVS',school:'Noble & Greenough',opponent:'Governor\'s Academy',date:'2026-04-15',time:'TBD',location:'Noble & Greenough School',home_away:'Home',school_league:'ISL',game_type:'League',opponent_league:'ISL'},
+  {game_id:'20260418-BELMONTHILL-GROTON',school:'Belmont Hill',opponent:'Groton',date:'2026-04-18',time:'TBD',location:'Belmont Hill School',home_away:'Home',school_league:'ISL',game_type:'League',opponent_league:'ISL'},
+  {game_id:'20260418-NOBLES-RL',school:'Noble & Greenough',opponent:'Roxbury Latin School',date:'2026-04-18',time:'TBD',location:'Noble & Greenough School',home_away:'Home',school_league:'ISL',game_type:'League',opponent_league:'ISL'},
+  {game_id:'20260418-STSEB-LAWRENCE',school:'St. Sebastian\'s',opponent:'Lawrence Academy',date:'2026-04-18',time:'TBD',location:'St. Sebastian\'s School',home_away:'Home',school_league:'ISL',game_type:'League',opponent_league:'ISL'},
+  {game_id:'20260418-STGEORGE-BROOKS',school:'St. George\'s',opponent:'Brooks',date:'2026-04-18',time:'TBD',location:'St. George\'s School',home_away:'Home',school_league:'ISL',game_type:'League',opponent_league:'ISL'},
+  {game_id:'20260418-MILTON-BBN',school:'Milton Academy',opponent:'Buckingham Browne & Nichols',date:'2026-04-18',time:'TBD',location:'Milton Academy',home_away:'Home',school_league:'ISL',game_type:'League',opponent_league:'ISL'},
+  {game_id:'20260418-GOVS-STMARKS',school:'Governor\'s Academy',opponent:'St. Mark\'s',date:'2026-04-18',time:'TBD',location:'Governor\'s Academy',home_away:'Home',school_league:'ISL',game_type:'League',opponent_league:'ISL'},
+  {game_id:'20260418-THAYER-TABOR',school:'Thayer Academy',opponent:'Tabor Academy',date:'2026-04-18',time:'TBD',location:'Thayer Academy',home_away:'Home',school_league:'ISL',game_type:'League',opponent_league:'ISL'},
+  {game_id:'20260422-LAWRENCE-RIVERS',school:'Lawrence Academy',opponent:'Rivers School',date:'2026-04-22',time:'TBD',location:'Lawrence Academy',home_away:'Home',school_league:'ISL',game_type:'League',opponent_league:'ISL'},
+  {game_id:'20260422-RL-BELMONTHILL',school:'Roxbury Latin School',opponent:'Belmont Hill',date:'2026-04-22',time:'TBD',location:'Roxbury Latin School',home_away:'Home',school_league:'ISL',game_type:'League',opponent_league:'ISL'},
+  {game_id:'20260422-GROTON-STSEB',school:'Groton',opponent:'St. Sebastian\'s',date:'2026-04-22',time:'TBD',location:'Groton School',home_away:'Home',school_league:'ISL',game_type:'League',opponent_league:'ISL'},
+  {game_id:'20260422-BROOKS-NOBLES',school:'Brooks',opponent:'Noble & Greenough',date:'2026-04-22',time:'TBD',location:'Brooks School',home_away:'Home',school_league:'ISL',game_type:'League',opponent_league:'ISL'},
+  {game_id:'20260422-GOVS-BBN',school:'Governor\'s Academy',opponent:'Buckingham Browne & Nichols',date:'2026-04-22',time:'TBD',location:'Governor\'s Academy',home_away:'Home',school_league:'ISL',game_type:'League',opponent_league:'ISL'},
+  {game_id:'20260422-STGEORGE-THAYER',school:'St. George\'s',opponent:'Thayer Academy',date:'2026-04-22',time:'TBD',location:'St. George\'s School',home_away:'Home',school_league:'ISL',game_type:'League',opponent_league:'ISL'},
+  {game_id:'20260422-STMARKS-MIDDLESEX',school:'St. Mark\'s',opponent:'Middlesex',date:'2026-04-22',time:'TBD',location:'St. Mark\'s School',home_away:'Home',school_league:'ISL',game_type:'League',opponent_league:'ISL'},
+  {game_id:'20260422-TABOR-MILTON',school:'Tabor Academy',opponent:'Milton Academy',date:'2026-04-22',time:'TBD',location:'Tabor Academy',home_away:'Home',school_league:'ISL',game_type:'League',opponent_league:'ISL'},
+  {game_id:'20260424-GROTON-RIVERS',school:'Groton',opponent:'Rivers School',date:'2026-04-24',time:'TBD',location:'Groton School',home_away:'Home',school_league:'ISL',game_type:'League',opponent_league:'ISL'},
+  {game_id:'20260424-MILTON-RL',school:'Milton Academy',opponent:'Roxbury Latin School',date:'2026-04-24',time:'TBD',location:'Milton Academy',home_away:'Home',school_league:'ISL',game_type:'League',opponent_league:'ISL'},
+  {game_id:'20260425-MIDDLESEX-STSEB',school:'Middlesex',opponent:'St. Sebastian\'s',date:'2026-04-25',time:'TBD',location:'Middlesex School',home_away:'Home',school_league:'ISL',game_type:'League',opponent_league:'ISL'},
+  {game_id:'20260425-BROOKS-LAWRENCE',school:'Brooks',opponent:'Lawrence Academy',date:'2026-04-25',time:'TBD',location:'Brooks School',home_away:'Home',school_league:'ISL',game_type:'League',opponent_league:'ISL'},
+  {game_id:'20260425-THAYER-NOBLES',school:'Thayer Academy',opponent:'Noble & Greenough',date:'2026-04-25',time:'TBD',location:'Thayer Academy',home_away:'Home',school_league:'ISL',game_type:'League',opponent_league:'ISL'},
+  {game_id:'20260425-BELMONTHILL-STMARKS',school:'Belmont Hill',opponent:'St. Mark\'s',date:'2026-04-25',time:'TBD',location:'Belmont Hill School',home_away:'Home',school_league:'ISL',game_type:'League',opponent_league:'ISL'},
+  {game_id:'20260425-TABOR-BBN',school:'Tabor Academy',opponent:'Buckingham Browne & Nichols',date:'2026-04-25',time:'TBD',location:'Tabor Academy',home_away:'Home',school_league:'ISL',game_type:'League',opponent_league:'ISL'},
+  {game_id:'20260425-GOVS-STGEORGE',school:'Governor\'s Academy',opponent:'St. George\'s',date:'2026-04-25',time:'TBD',location:'Governor\'s Academy',home_away:'Home',school_league:'ISL',game_type:'League',opponent_league:'ISL'},
+  {game_id:'20260429-THAYER-RIVERS',school:'Thayer Academy',opponent:'Rivers School',date:'2026-04-29',time:'TBD',location:'Thayer Academy',home_away:'Home',school_league:'ISL',game_type:'League',opponent_league:'ISL'},
+  {game_id:'20260429-NOBLES-BELMONTHILL',school:'Noble & Greenough',opponent:'Belmont Hill',date:'2026-04-29',time:'TBD',location:'Noble & Greenough School',home_away:'Home',school_league:'ISL',game_type:'League',opponent_league:'ISL'},
+  {game_id:'20260429-RL-LAWRENCE',school:'Roxbury Latin School',opponent:'Lawrence Academy',date:'2026-04-29',time:'TBD',location:'Roxbury Latin School',home_away:'Home',school_league:'ISL',game_type:'League',opponent_league:'ISL'},
+  {game_id:'20260429-STSEB-TABOR',school:'St. Sebastian\'s',opponent:'Tabor Academy',date:'2026-04-29',time:'TBD',location:'St. Sebastian\'s School',home_away:'Home',school_league:'ISL',game_type:'League',opponent_league:'ISL'},
+  {game_id:'20260429-BBN-BROOKS',school:'Buckingham Browne & Nichols',opponent:'Brooks',date:'2026-04-29',time:'TBD',location:'BB&N',home_away:'Home',school_league:'ISL',game_type:'League',opponent_league:'ISL'},
+  {game_id:'20260429-MIDDLESEX-GROTON',school:'Middlesex',opponent:'Groton',date:'2026-04-29',time:'TBD',location:'Middlesex School',home_away:'Home',school_league:'ISL',game_type:'League',opponent_league:'ISL'},
+  {game_id:'20260429-STGEORGE-STMARKS',school:'St. George\'s',opponent:'St. Mark\'s',date:'2026-04-29',time:'TBD',location:'St. George\'s School',home_away:'Home',school_league:'ISL',game_type:'League',opponent_league:'ISL'},
+  {game_id:'20260429-MILTON-GOVS',school:'Milton Academy',opponent:'Governor\'s Academy',date:'2026-04-29',time:'TBD',location:'Milton Academy',home_away:'Home',school_league:'ISL',game_type:'League',opponent_league:'ISL'},
+  {game_id:'20260502-STSEB-BELMONTHILL',school:'St. Sebastian\'s',opponent:'Belmont Hill',date:'2026-05-02',time:'TBD',location:'St. Sebastian\'s School',home_away:'Home',school_league:'ISL',game_type:'League',opponent_league:'ISL'},
+  {game_id:'20260502-STGEORGE-RIVERS',school:'St. George\'s',opponent:'Rivers School',date:'2026-05-02',time:'TBD',location:'St. George\'s School',home_away:'Home',school_league:'ISL',game_type:'League',opponent_league:'ISL'},
+  {game_id:'20260502-GOVS-RL',school:'Governor\'s Academy',opponent:'Roxbury Latin School',date:'2026-05-02',time:'TBD',location:'Governor\'s Academy',home_away:'Home',school_league:'ISL',game_type:'League',opponent_league:'ISL'},
+  {game_id:'20260502-STMARKS-BROOKS',school:'St. Mark\'s',opponent:'Brooks',date:'2026-05-02',time:'TBD',location:'St. Mark\'s School',home_away:'Home',school_league:'ISL',game_type:'League',opponent_league:'ISL'},
+  {game_id:'20260502-BBN-GROTON',school:'Buckingham Browne & Nichols',opponent:'Groton',date:'2026-05-02',time:'TBD',location:'BB&N',home_away:'Home',school_league:'ISL',game_type:'League',opponent_league:'ISL'},
+  {game_id:'20260502-MILTON-LAWRENCE',school:'Milton Academy',opponent:'Lawrence Academy',date:'2026-05-02',time:'TBD',location:'Milton Academy',home_away:'Home',school_league:'ISL',game_type:'League',opponent_league:'ISL'},
+  {game_id:'20260502-MIDDLESEX-THAYER',school:'Middlesex',opponent:'Thayer Academy',date:'2026-05-02',time:'TBD',location:'Middlesex School',home_away:'Home',school_league:'ISL',game_type:'League',opponent_league:'ISL'},
+  {game_id:'20260502-NOBLES-TABOR',school:'Noble & Greenough',opponent:'Tabor Academy',date:'2026-05-02',time:'TBD',location:'Noble & Greenough School',home_away:'Home',school_league:'ISL',game_type:'League',opponent_league:'ISL'},
+  {game_id:'20260506-RIVERS-TABOR',school:'Rivers School',opponent:'Tabor Academy',date:'2026-05-06',time:'TBD',location:'Rivers School',home_away:'Home',school_league:'ISL',game_type:'League',opponent_league:'ISL'},
+  {game_id:'20260506-BELMONTHILL-MIDDLESEX',school:'Belmont Hill',opponent:'Middlesex',date:'2026-05-06',time:'TBD',location:'Belmont Hill School',home_away:'Home',school_league:'ISL',game_type:'League',opponent_league:'ISL'},
+  {game_id:'20260506-RL-STMARKS',school:'Roxbury Latin School',opponent:'St. Mark\'s',date:'2026-05-06',time:'TBD',location:'Roxbury Latin School',home_away:'Home',school_league:'ISL',game_type:'League',opponent_league:'ISL'},
+  {game_id:'20260506-STSEB-BROOKS',school:'St. Sebastian\'s',opponent:'Brooks',date:'2026-05-06',time:'TBD',location:'St. Sebastian\'s School',home_away:'Home',school_league:'ISL',game_type:'League',opponent_league:'ISL'},
+  {game_id:'20260506-GOVS-GROTON',school:'Governor\'s Academy',opponent:'Groton',date:'2026-05-06',time:'TBD',location:'Governor\'s Academy',home_away:'Home',school_league:'ISL',game_type:'League',opponent_league:'ISL'},
+  {game_id:'20260506-NOBLES-BBN',school:'Noble & Greenough',opponent:'Buckingham Browne & Nichols',date:'2026-05-06',time:'TBD',location:'Noble & Greenough School',home_away:'Home',school_league:'ISL',game_type:'League',opponent_league:'ISL'},
+  {game_id:'20260506-LAWRENCE-STGEORGE',school:'Lawrence Academy',opponent:'St. George\'s',date:'2026-05-06',time:'TBD',location:'Lawrence Academy',home_away:'Home',school_league:'ISL',game_type:'League',opponent_league:'ISL'},
+  {game_id:'20260506-THAYER-MILTON',school:'Thayer Academy',opponent:'Milton Academy',date:'2026-05-06',time:'TBD',location:'Thayer Academy',home_away:'Home',school_league:'ISL',game_type:'League',opponent_league:'ISL'},
+  {game_id:'20260508-GROTON-MILTON',school:'Groton',opponent:'Milton Academy',date:'2026-05-08',time:'TBD',location:'Groton School',home_away:'Home',school_league:'ISL',game_type:'League',opponent_league:'ISL'},
+  {game_id:'20260509-BROOKS-RIVERS',school:'Brooks',opponent:'Rivers School',date:'2026-05-09',time:'TBD',location:'Brooks School',home_away:'Home',school_league:'ISL',game_type:'League',opponent_league:'ISL'},
+  {game_id:'20260509-BELMONTHILL-BBN',school:'Belmont Hill',opponent:'Buckingham Browne & Nichols',date:'2026-05-09',time:'TBD',location:'Belmont Hill School',home_away:'Home',school_league:'ISL',game_type:'League',opponent_league:'ISL'},
+  {game_id:'20260509-RL-STGEORGE',school:'Roxbury Latin School',opponent:'St. George\'s',date:'2026-05-09',time:'TBD',location:'Roxbury Latin School',home_away:'Home',school_league:'ISL',game_type:'League',opponent_league:'ISL'},
+  {game_id:'20260509-STSEB-NOBLES',school:'St. Sebastian\'s',opponent:'Noble & Greenough',date:'2026-05-09',time:'TBD',location:'St. Sebastian\'s School',home_away:'Home',school_league:'ISL',game_type:'League',opponent_league:'ISL'},
+  {game_id:'20260509-THAYER-LAWRENCE',school:'Thayer Academy',opponent:'Lawrence Academy',date:'2026-05-09',time:'TBD',location:'Thayer Academy',home_away:'Home',school_league:'ISL',game_type:'League',opponent_league:'ISL'},
+  {game_id:'20260509-STMARKS-TABOR',school:'St. Mark\'s',opponent:'Tabor Academy',date:'2026-05-09',time:'TBD',location:'St. Mark\'s School',home_away:'Home',school_league:'ISL',game_type:'League',opponent_league:'ISL'},
+  {game_id:'20260509-MIDDLESEX-GOVS',school:'Middlesex',opponent:'Governor\'s Academy',date:'2026-05-09',time:'TBD',location:'Middlesex School',home_away:'Home',school_league:'ISL',game_type:'League',opponent_league:'ISL'},
+  {game_id:'20260520-GROTON-LAWRENCE',school:'Groton',opponent:'Lawrence Academy',date:'2026-05-20',time:'TBD',location:'Groton School',home_away:'Home',school_league:'ISL',game_type:'League',opponent_league:'ISL'},
+  {game_id:'20260520-MIDDLESEX-STGEORGE',school:'Middlesex',opponent:'St. George\'s',date:'2026-05-20',time:'TBD',location:'Middlesex School',home_away:'Home',school_league:'ISL',game_type:'League',opponent_league:'ISL'},
+  {game_id:'20260520-STMARKS-AUSTINPREP',school:'St. Mark\'s',opponent:'Austin Preparatory',date:'2026-05-20',time:'TBD',location:'St. Mark\'s School',home_away:'Home',school_league:'ISL',game_type:'Non-League',opponent_league:'NESLL'},
+  {game_id:'20260522-MILTON-NOBLES',school:'Milton Academy',opponent:'Noble & Greenough',date:'2026-05-22',time:'TBD',location:'Milton Academy',home_away:'Home',school_league:'ISL',game_type:'League',opponent_league:'ISL'},
+  {game_id:'20260523-GROTON-STMARKS',school:'Groton',opponent:'St. Mark\'s',date:'2026-05-23',time:'TBD',location:'Groton School',home_away:'Home',school_league:'ISL',game_type:'League',opponent_league:'ISL'},
+  {game_id:'20260319-NORTHANDOVER-STJOHNSPREP',school:'St. Johns Prep',opponent:'North Andover High School',date:'2026-03-19',time:'5:00 PM',location:'SJP - Brother Linus Athletic Commons',home_away:'Away',school_league:'MIAA',game_type:'Scrimmage',opponent_league:'MIAA'},
+  {game_id:'20260321-DEXTER-STJOHNSPREP',school:'St. Johns Prep',opponent:'Dexter Southfield',date:'2026-03-21',time:'9:00 AM',location:'Dexter Southfield School',home_away:'Away',school_league:'MIAA',game_type:'Scrimmage',opponent_league:'NESLL'},
+  {game_id:'20260323-STJOHNSPREP-MANSFIELD',school:'St. Johns Prep',opponent:'Mansfield HS',date:'2026-03-23',time:'4:30 PM',location:'SJP - Brother Linus Athletic Commons',home_away:'Home',school_league:'MIAA',game_type:'Scrimmage',opponent_league:'MIAA'},
+  {game_id:'20260328-ACTONBOXBOROUGH-STJOHNSPREP',school:'St. Johns Prep',opponent:'Acton-Boxborough Regional HS',date:'2026-03-28',time:'4:00 PM',location:'Leary Field',home_away:'Away',school_league:'MIAA',game_type:'Non-League',opponent_league:'MIAA'},
+  {game_id:'20260331-MALDENCATHOLIC-STJOHNSPREP',school:'St. Johns Prep',opponent:'Malden Catholic',date:'2026-03-31',time:'4:00 PM',location:'Malden Catholic High School',home_away:'Away',school_league:'MIAA',game_type:'League',opponent_league:'MIAA'},
+  {game_id:'20260402-STJOHNS-STJOHNSPREP',school:'St. Johns Prep',opponent:'St. John\'s High School',date:'2026-04-02',time:'4:00 PM',location:'St. John\'s Shrewsbury High School',home_away:'Away',school_league:'MIAA',game_type:'League',opponent_league:'MIAA'},
+  {game_id:'20260407-XAVERIAN-STJOHNSPREP',school:'St. Johns Prep',opponent:'Xaverian Brothers High School',date:'2026-04-07',time:'6:00 PM',location:'Xaverian Brothers High School',home_away:'Away',school_league:'MIAA',game_type:'League',opponent_league:'MIAA'},
+  {game_id:'20260409-STJOHNSPREP-BCHIGH',school:'St. Johns Prep',opponent:'Boston College High School',date:'2026-04-09',time:'5:30 PM',location:'SJP - Cronin Memorial Stadium',home_away:'Home',school_league:'MIAA',game_type:'League',opponent_league:'MIAA'},
+  {game_id:'20260414-STJOHNSPREP-CATHOLICMEMORIAL',school:'St. Johns Prep',opponent:'Catholic Memorial School',date:'2026-04-14',time:'5:30 PM',location:'SJP - Cronin Memorial Stadium',home_away:'Home',school_league:'MIAA',game_type:'League',opponent_league:'MIAA'},
+  {game_id:'20260416-STJOHNSPREP-BISHOPGUERTIN',school:'St. Johns Prep',opponent:'Bishop Guertin High School',date:'2026-04-16',time:'7:00 PM',location:'Merrimack College',home_away:'Home',school_league:'MIAA',game_type:'Non-League',opponent_league:'NHIAA'},
+  {game_id:'20260418-STJOHNSPREP-LASALLE',school:'St. Johns Prep',opponent:'La Salle Academy',date:'2026-04-18',time:'12:00 PM',location:'SJP - Cronin Memorial Stadium',home_away:'Home',school_league:'MIAA',game_type:'Non-League',opponent_league:'Non-League'},
+  {game_id:'20260421-STAPLES-STJOHNSPREP',school:'St. Johns Prep',opponent:'Staples HS',date:'2026-04-21',time:'5:00 PM',location:'Staples High School',home_away:'Away',school_league:'MIAA',game_type:'Non-League',opponent_league:'Non-League'},
+  {game_id:'20260423-STJOHNSPREP-ANDOVER',school:'St. Johns Prep',opponent:'Andover High School',date:'2026-04-23',time:'12:00 PM',location:'SJP - Cronin Memorial Stadium',home_away:'Home',school_league:'MIAA',game_type:'Non-League',opponent_league:'MIAA'},
+  {game_id:'20260428-STJOHNSPREP-STJOHNS',school:'St. Johns Prep',opponent:'St. John\'s High School',date:'2026-04-28',time:'4:00 PM',location:'SJP - Cronin Memorial Stadium',home_away:'Home',school_league:'MIAA',game_type:'League',opponent_league:'MIAA'},
+  {game_id:'20260430-STJOHNSPREP-XAVERIAN',school:'St. Johns Prep',opponent:'Xaverian Brothers High School',date:'2026-04-30',time:'5:30 PM',location:'SJP - Cronin Memorial Stadium',home_away:'Home',school_league:'MIAA',game_type:'League',opponent_league:'MIAA'},
+  {game_id:'20260504-BCHIGH-STJOHNSPREP',school:'St. Johns Prep',opponent:'Boston College High School',date:'2026-05-04',time:'5:30 PM',location:'Boston College High School',home_away:'Away',school_league:'MIAA',game_type:'League',opponent_league:'MIAA'},
+  {game_id:'20260506-LINCOLNSUDBURY-STJOHNSPREP',school:'St. Johns Prep',opponent:'Lincoln Sudbury Regional HS',date:'2026-05-06',time:'5:30 PM',location:'Lincoln Sudbury High School',home_away:'Away',school_league:'MIAA',game_type:'Non-League',opponent_league:'MIAA'},
+  {game_id:'20260507-STJOHNSPREP-MALDENCATHOLIC',school:'St. Johns Prep',opponent:'Malden Catholic',date:'2026-05-07',time:'4:00 PM',location:'SJP - Cronin Memorial Stadium',home_away:'Home',school_league:'MIAA',game_type:'League',opponent_league:'MIAA'},
+  {game_id:'20260512-CATHOLICMEMORIAL-STJOHNSPREP',school:'St. Johns Prep',opponent:'Catholic Memorial School',date:'2026-05-12',time:'6:00 PM',location:'Catholic Memorial',home_away:'Away',school_league:'MIAA',game_type:'League',opponent_league:'MIAA'},
+  {game_id:'20260519-BILLERICA-STJOHNSPREP',school:'St. Johns Prep',opponent:'Billerica Memorial High School',date:'2026-05-19',time:'6:30 PM',location:'Billerica High School',home_away:'Away',school_league:'MIAA',game_type:'Non-League',opponent_league:'MIAA'},
+  {game_id:'20260522-HINGHAM-STJOHNSPREP',school:'St. Johns Prep',opponent:'Hingham High School',date:'2026-05-22',time:'5:30 PM',location:'Hingham High School',home_away:'Away',school_league:'MIAA',game_type:'Non-League',opponent_league:'MIAA'},
+  {game_id:'20260411-BISHOPGUERTIN-FALMOUTH',school:'Bishop Guertin',opponent:'Falmouth HS',date:'2026-04-11',time:'5:00 PM',location:'Stellos Stadium',home_away:'Home',school_league:'NHIAA',game_type:'Non-League',opponent_league:'MIAA'},
+  {game_id:'20260413-BISHOPGUERTIN-LONDONDERRY',school:'Bishop Guertin',opponent:'Londonderry HS',date:'2026-04-13',time:'6:00 PM',location:'Stellos Stadium',home_away:'Home',school_league:'NHIAA',game_type:'League',opponent_league:'NHIAA'},
+  {game_id:'20260416-STJOHNSPREP-BISHOPGUERTIN',school:'Bishop Guertin',opponent:'St. John\'s Prep',date:'2026-04-16',time:'7:00 PM',location:'Merrimack College',home_away:'Away',school_league:'NHIAA',game_type:'Non-League',opponent_league:'MIAA'},
+  {game_id:'20260418-BISHOPGUERTIN-STJOSEPH',school:'Bishop Guertin',opponent:'St. Joseph HS',date:'2026-04-18',time:'1:00 PM',location:'Stellos Stadium',home_away:'Home',school_league:'NHIAA',game_type:'League',opponent_league:'NHIAA'},
+  {game_id:'20260420-MANCHESTERCENTRAL-BISHOPGUERTIN',school:'Bishop Guertin',opponent:'Manchester Central HS',date:'2026-04-20',time:'4:00 PM',location:'Manchester Central HS',home_away:'Away',school_league:'NHIAA',game_type:'League',opponent_league:'NHIAA'},
+  {game_id:'20260422-LINCOLNSUDBURY-BISHOPGUERTIN',school:'Bishop Guertin',opponent:'Lincoln Sudbury Regional HS',date:'2026-04-22',time:'5:00 PM',location:'Lincoln Sudbury High School',home_away:'Away',school_league:'NHIAA',game_type:'Non-League',opponent_league:'MIAA'},
+  {game_id:'20260423-BISHOPGUERTIN-WINDHAM',school:'Bishop Guertin',opponent:'Windham HS',date:'2026-04-23',time:'4:00 PM',location:'Stellos Stadium',home_away:'Home',school_league:'NHIAA',game_type:'League',opponent_league:'NHIAA'},
+  {game_id:'20260427-CONCORD-BISHOPGUERTIN',school:'Bishop Guertin',opponent:'Concord HS',date:'2026-04-27',time:'4:00 PM',location:'Concord HS',home_away:'Away',school_league:'NHIAA',game_type:'League',opponent_league:'NHIAA'},
+  {game_id:'20260501-BISHOPGUERTIN-SALEM',school:'Bishop Guertin',opponent:'Salem HS',date:'2026-05-01',time:'4:00 PM',location:'Stellos Stadium',home_away:'Home',school_league:'NHIAA',game_type:'League',opponent_league:'NHIAA'},
+  {game_id:'20260505-BISHOPGUERTIN-BEDFORD',school:'Bishop Guertin',opponent:'Bedford HS',date:'2026-05-05',time:'4:00 PM',location:'Stellos Stadium',home_away:'Home',school_league:'NHIAA',game_type:'League',opponent_league:'NHIAA'},
+  {game_id:'20260508-NASHUANORTH-BISHOPGUERTIN',school:'Bishop Guertin',opponent:'Nashua North HS',date:'2026-05-08',time:'4:00 PM',location:'Nashua North HS',home_away:'Away',school_league:'NHIAA',game_type:'League',opponent_league:'NHIAA'},
+  {game_id:'20260509-BISHOPGUERTIN-STAPLES',school:'Bishop Guertin',opponent:'Staples HS',date:'2026-05-09',time:'1:00 PM',location:'UMass Amherst',home_away:'Home',school_league:'NHIAA',game_type:'Non-League',opponent_league:'Non-League'},
+  {game_id:'20260511-BISHOPGUERTIN-PINKERTON',school:'Bishop Guertin',opponent:'Pinkerton Academy',date:'2026-05-11',time:'6:00 PM',location:'Stellos Stadium',home_away:'Home',school_league:'NHIAA',game_type:'League',opponent_league:'NHIAA'},
+  {game_id:'20260514-BISHOPGUERTIN-MERRIMACK',school:'Bishop Guertin',opponent:'Merrimack HS',date:'2026-05-14',time:'6:30 PM',location:'Stellos Stadium',home_away:'Home',school_league:'NHIAA',game_type:'League',opponent_league:'NHIAA'},
+  {game_id:'20260518-BISHOPGUERTIN-EXETER',school:'Bishop Guertin',opponent:'Exeter HS',date:'2026-05-18',time:'4:00 PM',location:'Rivier University',home_away:'Home',school_league:'NHIAA',game_type:'League',opponent_league:'NHIAA'},
+  {game_id:'20260520-KEENE-BISHOPGUERTIN',school:'Bishop Guertin',opponent:'Keene HS',date:'2026-05-20',time:'4:00 PM',location:'Keene HS',home_away:'Away',school_league:'NHIAA',game_type:'League',opponent_league:'NHIAA'},
+  {game_id:'20260521-BCHIGH-BISHOPGUERTIN',school:'Bishop Guertin',opponent:'Boston College HS',date:'2026-05-21',time:'6:00 PM',location:'Boston College HS',home_away:'Away',school_league:'NHIAA',game_type:'Non-League',opponent_league:'MIAA'},
+  {game_id:'20260523-BISHOPGUERTIN-XAVERIAN',school:'Bishop Guertin',opponent:'Xaverian Brothers HS',date:'2026-05-23',time:'1:00 PM',location:'Stellos Stadium',home_away:'Home',school_league:'NHIAA',game_type:'Non-League',opponent_league:'MIAA'}
+];
+function leagueBadge(l){
+  const map={'ISL':'badge-isl','NESLL':'badge-nesll','Lakes Region':'badge-lakesregion','MIAA':'badge-miaa','NHIAA':'badge-nhiaa','Tournament':'badge-tournament'};
+  if(!l||l==='Non-League'||l==='Tournament')return'';
+  return`<span class="badge ${map[l]||'badge-nonleague'}">${l}</span>`;
+}
+function gameTypeBadge(t){
+  if(t==='League')return`<span class="game-type-league">● League</span>`;
+  if(t==='Tournament')return`<span class="game-type-tournament">★ Tournament</span>`;
+  if(t==='Scrimmage')return`<span class="game-type-scrimmage">Scrimmage</span>`;
+  return`<span class="game-type-nonleague">Non-League</span>`;
+}
+function formatDate(d){
+  if(!d)return'';
+  const[y,m,day]=d.split('-');
+  const months=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  const days=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+  const dt=new Date(+y,+m-1,+day);
+  return`${days[dt.getDay()]} ${months[+m-1]} ${+day}`;
+}
+const schools=[...new Set(DATA.map(r=>r.school))].sort();
+const sel=document.getElementById('filter-school');
+schools.forEach(s=>{const o=document.createElement('option');o.value=s;o.textContent=s;sel.appendChild(o);});
+document.getElementById('stat-schools').textContent=schools.length;
+document.getElementById('stat-games').textContent=DATA.length;
+let sortCol='date',sortDir=1;
+function sortBy(col){
+  if(sortCol===col)sortDir*=-1;else{sortCol=col;sortDir=1;}
+  document.querySelectorAll('thead th').forEach(th=>{th.classList.remove('sorted');th.querySelector('.sort-arrow').textContent='↕';});
+  const th=document.getElementById('th-'+col);
+  if(th){th.classList.add('sorted');th.querySelector('.sort-arrow').textContent=sortDir===1?'↑':'↓';}
+  render();
+}
+function getFiltered(){
+  const search=document.getElementById('search').value.toLowerCase();
+  const school=document.getElementById('filter-school').value;
+  const league=document.getElementById('filter-league').value;
+  const gametype=document.getElementById('filter-gametype').value;
+  const ha=document.getElementById('filter-ha').value;
+  return DATA.filter(r=>{
+    if(school&&r.school!==school)return false;
+    if(league&&r.school_league!==league)return false;
+    if(gametype&&r.game_type!==gametype)return false;
+    if(ha&&r.home_away!==ha)return false;
+    if(search&&![r.school,r.opponent,r.location,r.school_league,r.game_type].join(' ').toLowerCase().includes(search))return false;
+    return true;
+  }).sort((a,b)=>{
+    let av=a[sortCol]||'',bv=b[sortCol]||'';
+    return av<bv?-sortDir:av>bv?sortDir:0;
+  });
+}
+function render(){
+  const rows=getFiltered();
+  const tbody=document.getElementById('table-body');
+  document.getElementById('count').textContent=rows.length;
+  if(rows.length===0){tbody.innerHTML=`<tr><td colspan="7" class="no-results"><div class="no-results-title">No games found</div><div>Try adjusting your filters</div></td></tr>`;return;}
+  tbody.innerHTML=rows.map(r=>`
+    <tr>
+      <td class="school-name">${r.school}</td>
+      <td><div class="opponent-wrap"><span class="opponent-name">${r.opponent}</span>${leagueBadge(r.opponent_league)}</div></td>
+      <td class="date-cell">${formatDate(r.date)}</td>
+      <td class="time-cell">${r.time}</td>
+      <td class="location-cell">${r.location}</td>
+      <td><span class="ha-${r.home_away.toLowerCase()}">${r.home_away}</span></td>
+      <td>${gameTypeBadge(r.game_type)}</td>
+    </tr>`).join('');
+}
+function resetFilters(){
+  ['search','filter-school','filter-league','filter-gametype','filter-ha'].forEach(id=>{document.getElementById(id).value='';});
+  render();
+}
+['search','filter-school','filter-league','filter-gametype','filter-ha'].forEach(id=>{
+  document.getElementById(id).addEventListener('input',render);
+  document.getElementById(id).addEventListener('change',render);
+});
+render();
+</script>
+</body>
+</html>
